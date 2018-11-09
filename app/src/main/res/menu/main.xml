@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_viewLog"
+        android:orderInCategory="97"
+        android:title="Log"
+        app:showAsAction="never"
+        android:onClick="viewLog"/>
+
+    <item
+        android:id="@+id/action_openManaCounter"
+        android:orderInCategory="98"
+        android:title="Mana"
+        app:showAsAction="never"
+        android:onClick="openManaCounter"/>
+
+    <item
+        android:id="@+id/action_resetCounter"
+        android:orderInCategory="99"
+        android:title="Reset"
+        app:showAsAction="never"
+        android:onClick="resetAll"/>
+
+</menu>

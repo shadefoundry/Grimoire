@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+
+    <TextView
+        android:id="@+id/txt_lifeTotal"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center"
+        android:onClick="lifeSub1"
+        android:text="40"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="76sp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_addPoison"
+        app:layout_constraintStart_toEndOf="@+id/btn_addEnergy"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_sub1"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="lifeSub1"
+        android:text="-1"
+        app:layout_constraintEnd_toStartOf="@+id/btn_subPoison"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_add1"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lifeTotal" />
+
+    <Button
+        android:id="@+id/btn_add1"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="lifeAdd1"
+        android:text="+1"
+        app:layout_constraintEnd_toStartOf="@+id/btn_sub1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_subEnergy"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lifeTotal" />
+
+    <ImageView
+        android:id="@+id/btn_poison"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_subPoison"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/txt_poison"
+        app:layout_constraintTop_toBottomOf="@+id/btn_addPoison"
+        app:srcCompat="@drawable/ic_p" />
+
+    <TextView
+        android:id="@+id/txt_poison"
+        android:layout_width="42dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="0"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_subPoison"
+        app:layout_constraintEnd_toStartOf="@+id/btn_poison"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/txt_lifeTotal"
+        app:layout_constraintTop_toBottomOf="@+id/btn_addPoison" />
+
+    <ImageView
+        android:id="@+id/btn_energy"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_subEnergy"
+        app:layout_constraintEnd_toStartOf="@+id/txt_energy"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_addEnergy"
+        app:srcCompat="@drawable/ic_energy" />
+
+    <TextView
+        android:id="@+id/txt_energy"
+        android:layout_width="42dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="0"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_subEnergy"
+        app:layout_constraintEnd_toStartOf="@+id/txt_lifeTotal"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_energy"
+        app:layout_constraintTop_toBottomOf="@+id/btn_addEnergy" />
+
+    <Button
+        android:id="@+id/btn_addPoison"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="addPoison"
+        android:text="+ Poison"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_subPoison"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="subPoison"
+        android:text="- Poison"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_lifeTotal"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lifeTotal" />
+
+    <Button
+        android:id="@+id/btn_addEnergy"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="addEnergy"
+        android:text="+ Energy"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_subEnergy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="subEnergy"
+        android:text="- Energy"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lifeTotal" />
+
+
+</android.support.constraint.ConstraintLayout>
