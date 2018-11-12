@@ -20,7 +20,7 @@ import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    PlayerObject player = new PlayerObject(1,40,0,0,"All set, boss!");
+    PlayerObject player = new PlayerObject(1,40,0,0,0,"All set, boss!");
     DBHandler dbHandler= new DBHandler(this,null,null, 1);
     @Override
     protected void onCreate(Bundle savedInstanceState) {

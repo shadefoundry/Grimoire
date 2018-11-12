@@ -5,17 +5,19 @@ public class PlayerObject {
     int life;
     int poison;
     int energy;
+    int experience;
     int[] mana = new int[]{0,0,0,0,0,0};
     String log;
 
     public PlayerObject(){}
 
-    public PlayerObject(int _id, int _life,int _poison, int _energy,String _log){
+    public PlayerObject(int _id, int _life,int _poison, int _energy,int _experience,String _log){
         this.id = _id;
         this.life = _life;
         this.poison = _poison;
         this.energy = _energy;
         this.log = _log;
+        this.experience = _experience;
         this.mana = mana;
     }
 
