@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_toggleCounters"
-        android:orderInCategory="96"
+        android:orderInCategory="95"
         android:title="Toggle Counters"
         app:showAsAction="never"
         android:onClick="toggleCounters"/>
+
+    <item
+        android:id="@+id/action_openManaCounter"
+        android:orderInCategory="96"
+        android:title="Toggle Mana"
+        app:showAsAction="never"
+        android:onClick="toggleMana"/>
 
     <item
         android:id="@+id/action_viewLog"
@@ -22,17 +24,23 @@
         android:onClick="viewLog"/>
 
     <item
-        android:id="@+id/action_openManaCounter"
+        android:id="@+id/action_resetMana"
         android:orderInCategory="98"
-        android:title="Mana"
+        android:title="Reset Mana"
         app:showAsAction="never"
-        android:onClick="openManaCounter"/>
+        android:onClick="resetMana"/>
 
     <item
         android:id="@+id/action_resetCounter"
         android:orderInCategory="99"
-        android:title="Reset"
+        android:title="Reset Everything"
         app:showAsAction="never"
         android:onClick="resetAll"/>
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
 
 </menu>

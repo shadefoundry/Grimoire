@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -15,10 +17,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity
@@ -220,121 +224,121 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void handleMana(View view, int manaChange) {
-        /*switch(view.getId()){
+        switch(view.getId()){
             //very long case that handles mana increase/decrease
             //white
             case R.id.txt_w:
-                //TextView lose_w = findViewById(R.id.txt_w);
+                TextView lose_w = findViewById(R.id.txt_w);
                 if(player.getMana(0)+manaChange>=0){
                     player.handleMana(-1,0);
                     logChanges("- Spent W from Mana Pool");
                 }
-                //lose_w.setText(Integer.toString(player.getMana(0)));
+                lose_w.setText(Integer.toString(player.getMana(0)));
 
                 break;
             case R.id.btn_w:
-                //TextView gain_w = findViewById(R.id.txt_w);
+                TextView gain_w = findViewById(R.id.txt_w);
                 if(player.getMana(0)+manaChange>=0&player.getMana(0)+manaChange<100){
                     player.handleMana(1,0);
                     logChanges("+ Added W to Mana Pool");
                 }
-                //gain_w.setText(Integer.toString(player.getMana(0)));
+                gain_w.setText(Integer.toString(player.getMana(0)));
 
                 break;
             //blue
             case R.id.txt_u:
-                //TextView lose_u = findViewById(R.id.txt_u);
+                TextView lose_u = findViewById(R.id.txt_u);
                 if(player.getMana(1)+manaChange>=0){
                 player.handleMana(-1,1);
                 logChanges("- Spent U from Mana Pool");}
-                //lose_u.setText(Integer.toString(player.getMana(1)));
+                lose_u.setText(Integer.toString(player.getMana(1)));
 
                 break;
             case R.id.btn_u:
-                //TextView gain_u = findViewById(R.id.txt_u);
+                TextView gain_u = findViewById(R.id.txt_u);
                 if(player.getMana(1)+manaChange>=0&player.getMana(1)+manaChange<100){
                     player.handleMana(1,1);
                     logChanges("+ Added U to Mana Pool");
                 }
-                //gain_u.setText(Integer.toString(player.getMana(1)));
+                gain_u.setText(Integer.toString(player.getMana(1)));
 
                 break;
             //black
             case R.id.txt_b:
-                //TextView lose_b = findViewById(R.id.txt_b);
+                TextView lose_b = findViewById(R.id.txt_b);
                 if(player.getMana(2)+manaChange>=0){
                     player.handleMana(-1,2);
                     logChanges("- Spent B from Mana Pool");
                 }
-                //lose_b.setText(Integer.toString(player.getMana(2)));
+                lose_b.setText(Integer.toString(player.getMana(2)));
 
                 break;
             case R.id.btn_b:
-                //TextView gain_b = findViewById(R.id.txt_b);
+                TextView gain_b = findViewById(R.id.txt_b);
                 if(player.getMana(2)+manaChange>=0&player.getMana(2)+manaChange<100){
                     player.handleMana(1,2);
                     logChanges("+ Added B to Mana Pool");
                 }
-                //gain_b.setText(Integer.toString(player.getMana(2)));
+                gain_b.setText(Integer.toString(player.getMana(2)));
 
                 break;
             //red
             case R.id.txt_r:
-                //TextView lose_r = findViewById(R.id.txt_r);
+                TextView lose_r = findViewById(R.id.txt_r);
                 if(player.getMana(3)+manaChange>=0){
                     player.handleMana(-1,3);
                     logChanges("- Spent R from Mana Pool");
                 }
-                //lose_r.setText(Integer.toString(player.getMana(3)));
+                lose_r.setText(Integer.toString(player.getMana(3)));
 
                 break;
             case R.id.btn_r:
-                //TextView gain_r = findViewById(R.id.txt_r);
+                TextView gain_r = findViewById(R.id.txt_r);
                 if(player.getMana(3)+manaChange>=0&player.getMana(3)+manaChange<100){
                     player.handleMana(1,3);
                     logChanges("+ Added R to Mana Pool");
                 }
-                //gain_r.setText(Integer.toString(player.getMana(3)));
+                gain_r.setText(Integer.toString(player.getMana(3)));
 
                 break;
             //green
             case R.id.txt_g:
-                //TextView lose_g = findViewById(R.id.txt_g);
+                TextView lose_g = findViewById(R.id.txt_g);
                 if(player.getMana(4)+manaChange>=0){
                     player.handleMana(-1,4);
                     logChanges("- Spent G from Mana Pool");
                 }
-                //lose_g.setText(Integer.toString(player.getMana(4)));
+                lose_g.setText(Integer.toString(player.getMana(4)));
 
                 break;
             case R.id.btn_g:
-                //TextView gain_g = findViewById(R.id.txt_g);
+                TextView gain_g = findViewById(R.id.txt_g);
                 if(player.getMana(4)+manaChange>=0&player.getMana(4)+manaChange<100){
                     player.handleMana(1,4);
                     logChanges("+ Added G to Mana Pool");
                 }
-                //gain_g.setText(Integer.toString(player.getMana(4)));
+                gain_g.setText(Integer.toString(player.getMana(4)));
 
                 break;
             //colorless
             case R.id.txt_c:
-                //TextView lose_c = findViewById(R.id.txt_c);
+                TextView lose_c = findViewById(R.id.txt_c);
                 if(player.getMana(5)+manaChange>=0){
                     player.handleMana(-1,5);
                     logChanges("- Spent 1 from Mana Pool");
                 }
-                //lose_c.setText(Integer.toString(player.getMana(5)));
+                lose_c.setText(Integer.toString(player.getMana(5)));
 
                 break;
             case R.id.btn_c:
-                //TextView gain_c = findViewById(R.id.txt_c);
+                TextView gain_c = findViewById(R.id.txt_c);
                 if(player.getMana(5)+manaChange>=0&player.getMana(5)+manaChange<100){
                     player.handleMana(1,5);
                     logChanges("+ Added 1 to Mana Pool");}
-                //gain_c.setText(Integer.toString(player.getMana(5)));
+                gain_c.setText(Integer.toString(player.getMana(5)));
 
                 break;
-        }*/
+        }
         //storeData(player);
     }
 
@@ -352,12 +356,12 @@ public class MainActivity extends AppCompatActivity
         TextView poisonCounter = findViewById(R.id.txt_poison);
         TextView energy = findViewById(R.id.txt_energy);
         TextView experience = findViewById(R.id.txt_experience);
-        /*TextView txt_w = findViewById(R.id.txt_w);
+        TextView txt_w = findViewById(R.id.txt_w);
         TextView txt_u = findViewById(R.id.txt_u);
         TextView txt_b = findViewById(R.id.txt_b);
         TextView txt_r = findViewById(R.id.txt_r);
         TextView txt_g = findViewById(R.id.txt_g);
-        TextView txt_c = findViewById(R.id.txt_c);*/
+        TextView txt_c = findViewById(R.id.txt_c);
         //TextView txt_log = findViewById(R.id.txt_changeLog);
 
         //eventually this'll get a shared preference or something to set to whatever the user wants
@@ -377,22 +381,27 @@ public class MainActivity extends AppCompatActivity
         //txt_log.setText(player.getLog());
         //txt_log.scrollTo(0,0);
 
-        /*TextView[] mana = new TextView[6];
+        TextView[] mana = new TextView[6];
         mana[0] = txt_w;
         mana[1] = txt_u;
         mana[2] = txt_b;
         mana[3] = txt_r;
         mana[4] = txt_g;
-        mana[5] = txt_c;*/
+        mana[5] = txt_c;
         for(int i=0;i<6;i++){
             player.setMana(i,0);
-            //mana[i].setText(Integer.toString(player.getMana(i)));
+            mana[i].setText(Integer.toString(player.getMana(i)));
         }
         //finally store the data back in the db
         //storeData(player);
     }
 
-    public void openManaCounter(MenuItem item) {
+    public void toggleMana(MenuItem item) {
+        ConstraintLayout manaLayout = findViewById(R.id.manaLayout);
+        if(manaLayout.getVisibility()==View.GONE){
+            manaLayout.setVisibility(View.VISIBLE);
+        }
+        else{manaLayout.setVisibility(View.GONE);}
 
     }
 
@@ -410,5 +419,18 @@ public class MainActivity extends AppCompatActivity
         else{
             countersLayout.setVisibility(View.GONE);
         }
+    }
+
+    public void displayMonarchText(View view) {
+        CheckBox monarch = findViewById(R.id.chk_monarch);
+        TextView monarchReminderText = findViewById(R.id.txt_monarchReminder);
+        //if monarch is checked, display reminder text, otherwise remove it
+        if(monarch.isChecked()){
+            monarchReminderText.setVisibility(View.VISIBLE);
+        }
+        else{monarchReminderText.setVisibility(View.GONE);}
+    }
+
+    public void resetMana(MenuItem item) {
     }
 }
