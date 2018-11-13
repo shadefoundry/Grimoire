@@ -40,6 +40,13 @@ public class PlayerObject {
             setPoison(poison+_poisonChange);
         }
     }
+
+    public void handleExperience(int _experience) {
+        if(energy<99&experience+_experience>=0){
+            setExperience(experience+_experience);
+        }
+    }
+
     public void handleMana(int _manaChange, int _colorIndex){
         //increase/decrease mana based on given index:
         /*
@@ -69,6 +76,13 @@ public class PlayerObject {
         this.poison = _poison;
     }
 
+    public int getExperience() {
+        return experience;
+    }
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
     public int getEnergy() {
         return energy;
     }
@@ -96,4 +110,6 @@ public class PlayerObject {
     public void setLog(String log) {
         this.log = log;
     }
+
+
 }

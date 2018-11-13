@@ -79,6 +79,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/countersLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -86,17 +87,16 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_lifeTotal">
 
         <TextView
-            android:id="@+id/txt_poison2"
+            android:id="@+id/txt_experience"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/ic_c15"
-            android:backgroundTint="#c6c6c6"
             android:gravity="center"
             android:text="0"
             android:textAppearance="@style/TextAppearance.AppCompat"
@@ -112,8 +112,8 @@
             android:layout_marginTop="8dp"
             android:onClick="addExp"
             android:text="+ Exp"
-            app:layout_constraintEnd_toEndOf="@+id/txt_poison2"
-            app:layout_constraintStart_toStartOf="@+id/txt_poison2"
+            app:layout_constraintEnd_toEndOf="@+id/txt_experience"
+            app:layout_constraintStart_toStartOf="@+id/txt_experience"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
@@ -126,15 +126,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_subPoison"
-            app:layout_constraintTop_toBottomOf="@+id/txt_poison2" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_experience" />
 
         <TextView
             android:id="@+id/txt_energy"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/ic_energy"
-            android:backgroundTint="#c6c6c6"
             android:gravity="center"
             android:text="0"
             android:textAppearance="@style/TextAppearance.AppCompat"
@@ -160,8 +158,6 @@
             android:layout_width="28dp"
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/ic_p"
-            android:backgroundTint="#c6c6c6"
             android:gravity="center"
             android:text="0"
             android:textAppearance="@style/TextAppearance.AppCompat"
@@ -232,6 +228,21 @@
             app:layout_constraintStart_toEndOf="@+id/checkBox2"
             app:layout_constraintTop_toBottomOf="@+id/btn_subExperience" />
     </android.support.constraint.ConstraintLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/lst_commanderDamage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countersLayout" />
 
 
 </android.support.constraint.ConstraintLayout>

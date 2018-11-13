@@ -2,6 +2,7 @@ package shadefoundry.grimoire;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.method.ScrollingMovementMethod;
@@ -16,12 +17,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     PlayerObject player = new PlayerObject(1,40,0,0,0,"All set, boss!");
-    DBHandler dbHandler= new DBHandler(this,null,null, 1);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,7 @@ public class MainActivity extends AppCompatActivity
         //lock navigation drawer since we're not using it right now.
         drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         //storeData(player);
+
     }
 
     /*public void retrieveData(MenuItem item) {
@@ -166,6 +170,16 @@ public class MainActivity extends AppCompatActivity
         logChanges("- Spent an Energy Counter");
     }
 
+    public void addExp(View view) {
+        handleExperience(1);
+        logChanges("+ Got an Experience Counter");
+    }
+
+    public void subExp(View view) {
+        handleExperience(-1);
+        logChanges("- Lost an Experience Counter");
+    }
+
     public void gainMana(View view) {
         //gain a mana of the chosen color
         handleMana(view,1);
@@ -173,6 +187,12 @@ public class MainActivity extends AppCompatActivity
     public void spendMana(View view) {
         //spend a mana of the chosen color
         handleMana(view,-1);
+    }
+
+    private void handleExperience(int i){
+        TextView experienceCounters = (TextView) findViewById(R.id.txt_experience);
+        player.handleExperience(i);
+        experienceCounters.setText(Integer.toString(player.experience));
     }
 
     private void handlePoison(int i) {
@@ -331,6 +351,7 @@ public class MainActivity extends AppCompatActivity
         TextView lifeCounter = findViewById(R.id.txt_lifeTotal);
         TextView poisonCounter = findViewById(R.id.txt_poison);
         TextView energy = findViewById(R.id.txt_energy);
+        TextView experience = findViewById(R.id.txt_experience);
         /*TextView txt_w = findViewById(R.id.txt_w);
         TextView txt_u = findViewById(R.id.txt_u);
         TextView txt_b = findViewById(R.id.txt_b);
@@ -348,6 +369,9 @@ public class MainActivity extends AppCompatActivity
 
         player.setEnergy(0);
         energy.setText(Integer.toString(player.getEnergy()));
+
+        player.setExperience(0);
+        experience.setText(Integer.toString(player.getExperience()));
 
         player.setLog("All set, Boss!\n");
         //txt_log.setText(player.getLog());
@@ -373,5 +397,18 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void viewLog(MenuItem item) {
+
+    }
+
+    public void toggleCounters(MenuItem item) {
+        ConstraintLayout countersLayout = findViewById(R.id.countersLayout);
+        //if counters are hidden display them
+        if(countersLayout.getVisibility()==View.GONE){
+            countersLayout.setVisibility(View.VISIBLE);
+        }
+        //otherwise we hide them
+        else{
+            countersLayout.setVisibility(View.GONE);
+        }
     }
 }

@@ -8,6 +8,13 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_toggleCounters"
+        android:orderInCategory="96"
+        android:title="Toggle Counters"
+        app:showAsAction="never"
+        android:onClick="toggleCounters"/>
+
+    <item
         android:id="@+id/action_viewLog"
         android:orderInCategory="97"
         android:title="Log"
