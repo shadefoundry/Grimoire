@@ -9,7 +9,7 @@
 * Semi-Modular UI that allows for all features to be shown/hidden independant of eachother
 
 # Planned Features
-* Mode modularity to the layout
+* More modularity to the layout
 * Commander damage tracking for up to 10 players
 * Configurable default values
 * Default UI Configuration
