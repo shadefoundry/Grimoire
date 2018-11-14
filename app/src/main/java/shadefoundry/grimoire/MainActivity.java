@@ -1,6 +1,8 @@
 package shadefoundry.grimoire;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
@@ -8,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.ScrollingMovementMethod;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -27,7 +31,7 @@ import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    PlayerObject player = new PlayerObject(1,40,0,0,0,"All set, boss!");
+    PlayerObject player = new PlayerObject(1,40,0,0,0,"All set, boss!\n");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,21 +52,7 @@ public class MainActivity extends AppCompatActivity
         displaySelectedScreen(R.id.nav_life);
         //lock navigation drawer since we're not using it right now.
         drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        //storeData(player);
-
     }
-
-    /*public void retrieveData(MenuItem item) {
-        //get data from sqlite db and populate view
-        PlayerObject tempPlayer = dbHandler.generatePlayerObject();
-        populateLifeCounterWithData(tempPlayer);
-    }
-
-    private void storeData(PlayerObject playerObject){
-        //write values from local object to sqlite db
-        //should overwrite first value every time
-        dbHandler.addPlayer(playerObject);
-    }*/
 
     @Override
     public void onBackPressed() {
@@ -203,7 +193,6 @@ public class MainActivity extends AppCompatActivity
         TextView poisonCounters = (TextView) findViewById(R.id.txt_poison);
         player.handlePoison(i);
         poisonCounters.setText(Integer.toString(player.poison));
-        //storeData(player);
     }
 
     private void handleEnergy(int i) {
@@ -211,7 +200,6 @@ public class MainActivity extends AppCompatActivity
 
         player.handleEnergy(i);
         energy.setText(Integer.toString(player.getEnergy()));
-        //storeData(player);
     }
 
     private void changeLifeTotal(int lifeChange) {
@@ -220,7 +208,6 @@ public class MainActivity extends AppCompatActivity
             player.handleLife(lifeChange);
         }
         lifeTotal.setText(Integer.toString(player.life));
-        //storeData(player);
     }
 
     private void handleMana(View view, int manaChange) {
@@ -339,15 +326,10 @@ public class MainActivity extends AppCompatActivity
 
                 break;
         }
-        //storeData(player);
     }
 
     private void logChanges(String message){
-        //TextView log = findViewById(R.id.txt_changeLog);
-        //log.setMovementMethod(new ScrollingMovementMethod());
         player.addLog(message+"\n");
-        //log.setText(player.log);
-        //storeData(player);
     }
 
     public void resetAll(MenuItem item) {
@@ -356,13 +338,8 @@ public class MainActivity extends AppCompatActivity
         TextView poisonCounter = findViewById(R.id.txt_poison);
         TextView energy = findViewById(R.id.txt_energy);
         TextView experience = findViewById(R.id.txt_experience);
-        TextView txt_w = findViewById(R.id.txt_w);
-        TextView txt_u = findViewById(R.id.txt_u);
-        TextView txt_b = findViewById(R.id.txt_b);
-        TextView txt_r = findViewById(R.id.txt_r);
-        TextView txt_g = findViewById(R.id.txt_g);
-        TextView txt_c = findViewById(R.id.txt_c);
-        //TextView txt_log = findViewById(R.id.txt_changeLog);
+
+        emptyManaPool();
 
         //eventually this'll get a shared preference or something to set to whatever the user wants
         player.life = 40;
@@ -377,23 +354,7 @@ public class MainActivity extends AppCompatActivity
         player.setExperience(0);
         experience.setText(Integer.toString(player.getExperience()));
 
-        player.setLog("All set, Boss!\n");
-        //txt_log.setText(player.getLog());
-        //txt_log.scrollTo(0,0);
-
-        TextView[] mana = new TextView[6];
-        mana[0] = txt_w;
-        mana[1] = txt_u;
-        mana[2] = txt_b;
-        mana[3] = txt_r;
-        mana[4] = txt_g;
-        mana[5] = txt_c;
-        for(int i=0;i<6;i++){
-            player.setMana(i,0);
-            mana[i].setText(Integer.toString(player.getMana(i)));
-        }
-        //finally store the data back in the db
-        //storeData(player);
+        player.setLog("All set, boss!");
     }
 
     public void toggleMana(MenuItem item) {
@@ -406,7 +367,22 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void viewLog(MenuItem item) {
+        displayLog();
+    }
 
+    private void displayLog() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage(player.getLog());
+                alertDialogBuilder.setPositiveButton("Done",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                //Toast.makeText(MainActivity.this,"Log dismissed",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     public void toggleCounters(MenuItem item) {
@@ -426,11 +402,55 @@ public class MainActivity extends AppCompatActivity
         TextView monarchReminderText = findViewById(R.id.txt_monarchReminder);
         //if monarch is checked, display reminder text, otherwise remove it
         if(monarch.isChecked()){
+            logChanges("+ Became the Monarch");
             monarchReminderText.setVisibility(View.VISIBLE);
         }
-        else{monarchReminderText.setVisibility(View.GONE);}
+        else{
+            monarchReminderText.setVisibility(View.GONE);
+            logChanges("- No longer the Monarch");}
     }
 
     public void resetMana(MenuItem item) {
+        emptyManaPool();
+    }
+
+    private void emptyManaPool() {
+        TextView txt_w = findViewById(R.id.txt_w);
+        TextView txt_u = findViewById(R.id.txt_u);
+        TextView txt_b = findViewById(R.id.txt_b);
+        TextView txt_r = findViewById(R.id.txt_r);
+        TextView txt_g = findViewById(R.id.txt_g);
+        TextView txt_c = findViewById(R.id.txt_c);
+        TextView[] mana = new TextView[6];
+        mana[0] = txt_w;
+        mana[1] = txt_u;
+        mana[2] = txt_b;
+        mana[3] = txt_r;
+        mana[4] = txt_g;
+        mana[5] = txt_c;
+        for(int i=0;i<6;i++){
+            player.setMana(i,0);
+            mana[i].setText(Integer.toString(player.getMana(i)));
+        }
+        logChanges("- Emptied Mana Pool");
+    }
+
+    public void toggleDesignations(MenuItem item) {
+        ConstraintLayout designationsLayout = findViewById(R.id.designationLayout);
+        //if player designations are hidden display them
+        if(designationsLayout.getVisibility()==View.GONE){
+            designationsLayout.setVisibility(View.VISIBLE);
+        }
+        //otherwise we hide them
+        else{
+            designationsLayout.setVisibility(View.GONE);
+        }
+    }
+
+    public void ascend(View view) {
+        CheckBox citysBlessing = findViewById(R.id.chk_cityBlessing);
+        if(citysBlessing.isChecked()){
+            logChanges("+ Got the City's Blessing");
+        }
     }
 }

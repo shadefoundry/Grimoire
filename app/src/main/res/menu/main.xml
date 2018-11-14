@@ -4,10 +4,17 @@
 
     <item
         android:id="@+id/action_toggleCounters"
-        android:orderInCategory="95"
+        android:orderInCategory="94"
         android:title="Toggle Counters"
         app:showAsAction="never"
         android:onClick="toggleCounters"/>
+
+    <item
+        android:id="@+id/action_toggleDesignations"
+        android:orderInCategory="95"
+        android:title="Toggle Designations"
+        app:showAsAction="never"
+        android:onClick="toggleDesignations"/>
 
     <item
         android:id="@+id/action_openManaCounter"
