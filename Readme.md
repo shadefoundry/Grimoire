@@ -10,7 +10,7 @@
 
 # Planned Features
 * More modularity to the layout
-* Commander damage tracking for up to 10 players
+* Commander damage tracking for up to 10 players (perhaps as a grid of numbers?)
 * Configurable default values
 * Default UI Configuration
 * Dice roller
