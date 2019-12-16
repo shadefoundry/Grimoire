@@ -31,7 +31,8 @@ import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    PlayerObject player = new PlayerObject(1,40,0,0,0,"All set, boss!\n");
+    //PlayerObject player = new PlayerObject(1,40,0,0,0,"All set, boss!\n");
+    Player player = Player.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

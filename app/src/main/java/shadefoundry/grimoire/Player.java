@@ -1,27 +1,32 @@
 package shadefoundry.grimoire;
 
-public class PlayerObject {
-    int id;
-    int life;
-    int poison;
-    int energy;
-    int experience;
-    int[] mana = new int[]{0,0,0,0,0,0};
-    String log;
+public class Player {
+    private static final Player ourInstance = new Player();
 
-    public PlayerObject(){}
+    public int id;
+    public int life;
+    public int poison;
+    public int energy;
+    public int experience;
+    public int[] mana = new int[]{0,0,0,0,0,0};
+    public String log;
 
-    public PlayerObject(int _id, int _life,int _poison, int _energy,int _experience,String _log){
-        this.id = _id;
-        this.life = _life;
-        this.poison = _poison;
-        this.energy = _energy;
-        this.log = _log;
-        this.experience = _experience;
-        this.mana = mana;
+    int i = 0;
+
+    public static Player getInstance() {
+        return ourInstance;
     }
 
-    //general
+    private Player() {
+        id = 1;
+        life = 40;//TODO: get value from sharedPrefs
+        poison = 0;
+        energy = 0;
+        log = "All set, boss!";
+        experience = 0;
+        mana = mana;
+    }
+
     public void handleLife(int _lifeChange) {
         if (life + _lifeChange <= 999 & life+_lifeChange>=0) {
             setLife(life + _lifeChange);
@@ -50,15 +55,15 @@ public class PlayerObject {
     public void handleMana(int _manaChange, int _colorIndex){
         //increase/decrease mana based on given index:
         /*
-        * w = 0
-        * u = 1
-        * b = 2
-        * r = 3
-        * g = 4
-        * c = 5
-        * */
+         * w = 0
+         * u = 1
+         * b = 2
+         * r = 3
+         * g = 4
+         * c = 5
+         * */
         //if (mana[_colorIndex]+_manaChange>=0&mana[_colorIndex]+_manaChange<100){
-            setMana(_colorIndex,mana[_colorIndex]+_manaChange);
+        setMana(_colorIndex,mana[_colorIndex]+_manaChange);
         //}
     }
     public void addLog(String s) {
@@ -110,6 +115,4 @@ public class PlayerObject {
     public void setLog(String log) {
         this.log = log;
     }
-
-
 }
