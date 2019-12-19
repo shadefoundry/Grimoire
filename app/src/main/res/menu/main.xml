@@ -26,7 +26,7 @@
     <item
         android:id="@+id/action_viewLog"
         android:orderInCategory="97"
-        android:title="Log"
+        android:title="Show Log"
         app:showAsAction="never"
         android:onClick="viewLog"/>
 
@@ -48,6 +48,7 @@
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+        android:enabled="false"/>
 
 </menu>

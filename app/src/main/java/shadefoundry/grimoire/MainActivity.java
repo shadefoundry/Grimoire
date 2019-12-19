@@ -31,7 +31,6 @@ import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    //PlayerObject player = new PlayerObject(1,40,0,0,0,"All set, boss!\n");
     Player player = Player.getInstance();
 
     @Override
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
-        toggle.setDrawerIndicatorEnabled(false);
+        //toggle.setDrawerIndicatorEnabled(false);//disable drawer icon
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity
 
         displaySelectedScreen(R.id.nav_life);
         //lock navigation drawer since we're not using it right now.
-        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        //drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
     @Override
@@ -108,15 +107,15 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_life:
                 fragment = new GameTools();
                 break;
-            /*case R.id.nav_dice:
+            case R.id.nav_dice:
                 fragment = new Dice();
                 break;
-            /*case R.id.nav_notes:
+            case R.id.nav_notes:
                 fragment = new Notes();
-                break;*/
-            /*case R.id.nav_cardsearch:
+                break;
+            case R.id.nav_cardsearch:
                 fragment = new CardSearch();
-                break;*/
+                break;
         }
 
         //replacing the fragment

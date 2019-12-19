@@ -8,23 +8,22 @@
             android:id="@+id/nav_life"
             android:icon="@drawable/ic_pw_symbol"
             android:title="Game Tools"
-            android:enabled="false"/>
+            android:enabled="true"/>
+        <item
+            android:id="@+id/nav_cardsearch"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Card Search"
+            android:enabled="true"/>
         <item
             android:id="@+id/nav_dice"
             android:icon="@drawable/ic_dice"
             android:title="Dice"
-            android:enabled="false"/>
+            android:enabled="true"/>
         <item
             android:id="@+id/nav_notes"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Quick Notes"
+            android:title="Notes"
             android:enabled="false"/>
-        <item
-            android:id="@+id/nav_cardsearch"
-            android:icon="@drawable/ic_menu_send"
-            android:title="Card Lookup"
-            android:enabled="false"/>
-
     </group>
 
 </menu>
